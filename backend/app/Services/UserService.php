@@ -23,9 +23,11 @@ class UserService implements IUserService {
     /**
      * @inheritDoc
      */
-    public function createUserData(array $data): JsonResponse
+    public function createUserData(array $data): ?array
     {
+        $user = $this->authRepository->createUserData($data);
 
+        return $user;
     }
 
     /**

@@ -57,7 +57,9 @@ class UserRepository implements IUserRepository, IAuthRepository {
     /**
      * @inheritDoc
      */
-    public function createUserData() {
+    public function createUserData(array $data): ?User 
+    {
+        return $this->model::create($data);
     }
 
     /**

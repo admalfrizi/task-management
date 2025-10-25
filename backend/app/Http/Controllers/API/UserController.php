@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CreateUserRequest;
-use App\Http\Requests\LoginUserRequest;
 use App\Models\User;
 use App\Services\Contracts\IUserService;
 use App\Trait\ResponseHelper;
@@ -39,9 +37,9 @@ class UserController extends Controller
                 "User Data"
             );
         } 
-        catch (Exception $e) 
+        catch (ModelNotFoundException $e) 
         {
-            return $this->responseError($e->getMessage(), 400);
+            return $this->responseError('User not register in this system !', 404);
         }
     }
 

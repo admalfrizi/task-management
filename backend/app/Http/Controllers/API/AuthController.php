@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CreateUserRequest;
-use App\Http\Requests\LoginUserRequest;
+use App\Http\Requests\User\CreateUserRequest;
+use App\Http\Requests\User\LoginUserRequest;
 use App\Services\Contracts\IUserService;
 use App\Trait\ResponseHelper;
 use Exception;
@@ -44,15 +44,13 @@ class AuthController extends Controller
 
     public function register(CreateUserRequest $userReq): JsonResponse
     {
-        //return $this->userService->createUserData($userReq->validated());
-
         try {
+            $responseData = $this->userService->createUserData($userReq->validated());
+
             return $this->responseSuccess(
-                "qwfq", 
+                $responseData, 
                 "User data has been created !"
             );
-        } catch (ValidationException $e) {
-            return $this->responseError($e->getMessage(), 400);
         } catch (Exception $e) {
             return $this->responseError($e->getMessage(), 400);
         }
