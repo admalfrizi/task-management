@@ -2,7 +2,7 @@
 
 namespace App\Http\Repositories\Contracts;
 
-interface ITaskRepository {
+interface IUserService {
     public function createNewData();
     public function readData();
     public function updateData();

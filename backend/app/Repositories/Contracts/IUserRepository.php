@@ -2,7 +2,7 @@
 
 namespace App\Http\Repositories\Contracts;
 
-interface UserRepository {
+interface IUserRepository {
     public function createNewData();
     public function readData();
     public function updateData();

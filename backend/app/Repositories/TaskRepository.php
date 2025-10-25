@@ -2,9 +2,10 @@
 
 namespace App\Repositories;
 
-use App\Repositories\Contracts\IUserRepository;
+use App\Repositories\Contracts\ITaskRepository;
 
-class TaskRepository implements IUserRepository {
+class TaskRepository implements ITaskRepository {
+
     public function createNewData() {
 
     }

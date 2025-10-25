@@ -8,6 +8,14 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+
+    protected IUserService $userService;
+
+    public function __construct(IUserService $userService)
+    {
+        $this->userService = $userService;
+    }
+
     /**
      * Display a listing of the resource.
      */

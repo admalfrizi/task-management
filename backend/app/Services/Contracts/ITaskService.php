@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Repositories\Contracts;
+namespace App\Http\Services\Contracts;
 
-interface ITaskRepository {
+interface ITaskService {
     public function createNewData();
     public function readData();
     public function updateData();
