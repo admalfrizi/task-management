@@ -2,22 +2,37 @@
 
 namespace App\Services;
 
+use App\Http\Resources\TaskResponse;
+use App\Repositories\Contracts\ITaskRepository;
 use App\Services\Contracts\ITaskService;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class TaskService implements ITaskService {
 
-    public function createNewData() {
+    protected ITaskRepository $taskRepository;
+    
+    public function __construct(ITaskRepository $taskRepository)
+    {
+        $this->taskRepository = $taskRepository;
     }
 
-    
-    public function deleteData() {
+    /**
+     * @inheritDoc
+     */
+    public function getOneTask(int $id): ?JsonResource 
+    {
+        $taskData = $this->taskRepository->getOneTask($id);
+
+        return new TaskResponse($taskData);
     }
 
-    
-    public function readData() {
-    }
+    /**
+     * @inheritDoc
+     */
+    public function createNewTask(array $reqData): ?JsonResource 
+    {
+        $data = $this->taskRepository->addNewTask($reqData);
 
-    
-    public function updateData() {
+        return new TaskResponse($data);
     }
 }

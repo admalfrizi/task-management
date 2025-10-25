@@ -2,18 +2,21 @@
 
 namespace App\Http\Requests\Task;
 
+use App\Trait\ResponseHelper;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class TaskRequest extends FormRequest
+class CreateTaskRequest extends FormRequest
 {
+    use ResponseHelper;
+
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,9 +28,9 @@ class TaskRequest extends FormRequest
     {
         return [
             'title' => 'required|string',
-            'description'=> 'nullable|text',
+            'description'=> 'nullable|string',
             'status' => 'required|in:todo,in_progress,done',
-            'deadline' => 'nullable|date'
+            'deadline' => 'nullable|date|after:today'
         ];
     }
 

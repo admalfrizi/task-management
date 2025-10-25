@@ -7,12 +7,25 @@ use App\Repositories\Contracts\ITaskRepository;
 
 class TaskRepository implements ITaskRepository {
 
+    protected $model;
+
+    /**
+     * TaskRepository constructor.
+     *
+     * @param Task $model
+     */
+    public function __construct(Task $model)
+    {
+        $this->model = $model;
+    }
+
     /**
      * @inheritDoc
      */
     public function addNewTask(array $data): Task 
     {
-        return Task::create($data);
+        $task = $this->model->create($data);
+        return $task;
     }
 
     /**
@@ -30,7 +43,8 @@ class TaskRepository implements ITaskRepository {
     /**
      * @inheritDoc
      */
-    public function getOneTask($id): ?array {
+    public function getOneTask($id): ?Task {
+        return $this->model->findOrFail($id);
     }
 
     /**

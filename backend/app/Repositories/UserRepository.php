@@ -13,7 +13,7 @@ class UserRepository implements IUserRepository, IAuthRepository {
     protected $model;
 
     /**
-     * EloquentUserRepository constructor.
+     * UserRepository constructor.
      *
      * @param User $model
      */

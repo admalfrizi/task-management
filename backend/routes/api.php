@@ -20,7 +20,7 @@ Route::middleware('jwt')->group(function () {
     Route::prefix('/task')->group(function () {
         Route::get('/', [TaskController::class,'index']);
         Route::get('/{id?}', [TaskController::class,'show']);
-        Route::post('/create', [TaskController::class,'create']);
+        Route::post('/create', [TaskController::class,'store']);
     });
 
     Route::prefix('/user')->group(function () {
