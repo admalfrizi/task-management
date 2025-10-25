@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Services\Contracts;
+namespace App\Services\Contracts;
 
 interface ITaskService {
     public function createNewData();

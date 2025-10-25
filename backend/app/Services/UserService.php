@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Contracts\IUserService;
+use App\Services\Contracts\IUserService;
 use App\Repositories\Contracts\IUserRepository;
 
 class UserService implements IUserService {
@@ -14,4 +14,28 @@ class UserService implements IUserService {
         $this->userRepository = $userRepository;
     }
 
+
+    /**
+     * @inheritDoc
+     */
+    public function createNewData() {
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function deleteData() {
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function readData() {
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function updateData() {
+    }
 }

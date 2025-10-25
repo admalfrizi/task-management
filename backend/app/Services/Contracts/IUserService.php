@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Repositories\Contracts;
+namespace App\Services\Contracts;
 
 interface IUserService {
     public function createNewData();

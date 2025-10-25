@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Services\Contracts\IUserService;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
