@@ -12,6 +12,7 @@ use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Http\Request;
+use \Illuminate\Http\JsonResponse;
 
 class UserController extends Controller
 {
@@ -24,15 +25,14 @@ class UserController extends Controller
         $this->userService = $userService;
     }
 
-    public function login(LoginUserRequest $loginReq): \Illuminate\Http\JsonResponse
+    public function login(LoginUserRequest $loginReq): JsonResponse
     {
         try {
             //$responseData = $this->userService->authenticateUser($loginReq->validated());
 
             return $this->responseSuccess(
                 $loginReq, 
-                "Welcome, User",
-                true
+                "Welcome, User"
             );
         } catch (ValidationException $e) {
             return $this->responseError($e->getMessage(), 400);
@@ -43,9 +43,20 @@ class UserController extends Controller
         }
     }
 
-    public function register(CreateUserRequest $userReq)
+    public function register(CreateUserRequest $userReq): JsonResponse
     {
-        return $this->userService->createUserData($userReq->validated());
+        //return $this->userService->createUserData($userReq->validated());
+
+        try {
+            return $this->responseSuccess(
+                $userReq, 
+                "User data has been created !"
+            );
+        } catch (ValidationException $e) {
+            return $this->responseError($e->getMessage(), 400);
+        } catch (Exception $e) {
+            return $this->responseError($e->getMessage(), 400);
+        }
     }
 
     /**

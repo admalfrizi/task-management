@@ -23,7 +23,7 @@ class JwtMiddleware
         try {
             JWTAuth::parseToken()->authenticate();
         } catch (Exception $e) {
-            return $this->responseError($e->getMessage(), $e->getCode());
+            return $this->responseError($e->getMessage(), 500);
         }
 
         return $next($request);

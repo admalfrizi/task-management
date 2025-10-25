@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/login',[UserController::class, 'login']);
 
-Route::middleware('jwt.auth')->group(function () {
+Route::middleware('jwt')->group(function () {
 
     Route::prefix('/task')->group(function () {
         Route::get('/', [TaskController::class,'index']);

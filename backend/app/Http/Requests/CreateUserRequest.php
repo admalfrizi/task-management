@@ -2,16 +2,20 @@
 
 namespace App\Http\Requests;
 
+use App\Trait\ResponseHelper;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use \Illuminate\Contracts\Validation\Validator;
 
 class CreateUserRequest extends FormRequest
 {
+    use ResponseHelper;
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +27,18 @@ class CreateUserRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
+            'username'=> 'required|string',
             'email' => 'required|email',
-            'password' => 'required'
+            'password' => 'required|confirmed'
         ];
+    }
+
+    protected function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException($this->responseValidate(
+            'Validation Failed !', 
+            422, 
+            $validator->errors()
+        ));
     }
 }
