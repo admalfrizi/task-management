@@ -25,7 +25,7 @@ class UserService implements IUserService {
      */
     public function createUserData(array $data): ?array
     {
-        $user = $this->authRepository->createUserData($data);
+        $user = $this->authRepository->addNewUser($data);
 
         return $user;
     }

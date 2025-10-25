@@ -6,6 +6,6 @@ use App\Models\User;
 
 interface IAuthRepository {
     public function authenticateUser(array $data) :? string;
-    public function createUserData(array $data) : ? User;
+    public function addNewUser(array $data) : ?array ;
     public function signOut();
 }

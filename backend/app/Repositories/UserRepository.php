@@ -57,9 +57,19 @@ class UserRepository implements IUserRepository, IAuthRepository {
     /**
      * @inheritDoc
      */
-    public function createUserData(array $data): ?User 
+    public function addNewUser(array $data): ?array 
     {
-        return $this->model::create($data);
+        $user = $this->model::create($data);
+        $token = JWTAuth::fromUser($user);
+        $tokenData = [
+            "access_token" => $token,
+            "token_type" => "Bearer"
+        ];
+
+        return [
+            'user' => $user,
+            'token' => $tokenData,
+        ];
     }
 
     /**

@@ -13,8 +13,6 @@ use Illuminate\Support\Facades\Route;
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login',[AuthController::class, 'login']);
 
-Route::get('/user/{id?}', [UserController::class,'show']);
-
 Route::middleware('jwt')->group(function () {
 
     Route::prefix('/task')->group(function () {
@@ -25,7 +23,7 @@ Route::middleware('jwt')->group(function () {
 
     Route::prefix('/user')->group(function () {
         Route::get('/', [UserController::class,'index']);
-        //Route::get('/{id?}', [UserController::class,'show']);
+        Route::get('/{id?}', [UserController::class,'show']);
         Route::post('/update/{id?}', [UserController::class,'update']);
     });
 });
