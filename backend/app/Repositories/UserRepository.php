@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Http\Resources\UserResponse;
 use App\Models\User;
 use App\Repositories\Contracts\IAuthRepository;
 use App\Repositories\Contracts\IUserRepository;
@@ -67,7 +68,7 @@ class UserRepository implements IUserRepository, IAuthRepository {
         ];
 
         return [
-            'user' => $user,
+            'user' => new UserResponse($user),
             'token' => $tokenData,
         ];
     }
@@ -76,5 +77,6 @@ class UserRepository implements IUserRepository, IAuthRepository {
      * @inheritDoc
      */
     public function signOut() {
+        JWTAuth::invalidate(JWTAuth::getToken());
     }
 }

@@ -9,4 +9,5 @@ interface IUserService {
     public function createUserData(array $data) : ?array;
     public function authenticateUser(array $reqData) : array;
     public function getUserById(int $userId) :? User;
+    public function logout();
 }

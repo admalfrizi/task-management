@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
+use Tymon\JWTAuth\Exceptions\JWTException;
 
 class AuthController extends Controller
 {
@@ -56,7 +57,20 @@ class AuthController extends Controller
         }
     }
 
-    public function logout(): JsonResponse {
+    public function logout(): JsonResponse 
+    {
+        try 
+        {
+            $this->userService->logout();
 
+            return $this->responseSuccess(
+                null,
+                "User succesfully logout"
+            );
+        } 
+        catch (JWTException $e) 
+        {
+            return $this->responseError($e->getMessage(), code: 500);
+        }
     }
 }

@@ -59,4 +59,11 @@ class UserService implements IUserService {
 
         return $userData;
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function logout() {
+        $this->authRepository->signOut();
+    }
 }
