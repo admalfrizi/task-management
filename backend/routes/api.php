@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\TaskController;
 use App\Http\Controllers\API\UserController;
 use Illuminate\Http\Request;
@@ -9,8 +10,10 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // })->middleware('auth:sanctum');
 
-Route::post('/register', [UserController::class, 'register']);
-Route::post('/login',[UserController::class, 'login']);
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login',[AuthController::class, 'login']);
+
+Route::get('/user/{id?}', [UserController::class,'show']);
 
 Route::middleware('jwt')->group(function () {
 
@@ -22,7 +25,7 @@ Route::middleware('jwt')->group(function () {
 
     Route::prefix('/user')->group(function () {
         Route::get('/', [UserController::class,'index']);
-        Route::get('/{id?}', [UserController::class,'show']);
+        //Route::get('/{id?}', [UserController::class,'show']);
         Route::post('/update/{id?}', [UserController::class,'update']);
     });
 });

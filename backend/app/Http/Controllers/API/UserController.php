@@ -25,46 +25,24 @@ class UserController extends Controller
         $this->userService = $userService;
     }
 
-    public function login(LoginUserRequest $loginReq): JsonResponse
-    {
-        try {
-            //$responseData = $this->userService->authenticateUser($loginReq->validated());
-
-            return $this->responseSuccess(
-                $loginReq, 
-                "Welcome, User"
-            );
-        } catch (ValidationException $e) {
-            return $this->responseError($e->getMessage(), 400);
-        } catch (ModelNotFoundException $e) {
-            return $this->responseError('User not register in this system !', 404);
-        } catch (Exception $e) {
-            return $this->responseError($e->getMessage(), 400);
-        }
-    }
-
-    public function register(CreateUserRequest $userReq): JsonResponse
-    {
-        //return $this->userService->createUserData($userReq->validated());
-
-        try {
-            return $this->responseSuccess(
-                $userReq, 
-                "User data has been created !"
-            );
-        } catch (ValidationException $e) {
-            return $this->responseError($e->getMessage(), 400);
-        } catch (Exception $e) {
-            return $this->responseError($e->getMessage(), 400);
-        }
-    }
-
     /**
      * Display the specified resource.
      */
-    public function show(User $user)
+    public function show( $id )
     {
-        //
+        try 
+        {
+            $responseData = $this->userService->getUserById( $id );
+            
+            return $this->responseSuccess(
+                $responseData, 
+                "User Data"
+            );
+        } 
+        catch (Exception $e) 
+        {
+            return $this->responseError($e->getMessage(), 400);
+        }
     }
 
     /**

@@ -2,8 +2,9 @@
 
 namespace App\Repositories\Contracts;
 
+use App\Models\User;
+
 interface IUserRepository {
-    public function insertData();
-    public function readData();
-    public function logout();
+    public function getUserData(?int $id = null, $email = null) : User;
+    public function updateUserData($id, $user) : bool;
 }

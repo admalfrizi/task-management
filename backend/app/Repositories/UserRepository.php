@@ -2,19 +2,67 @@
 
 namespace App\Repositories;
 
+use App\Models\User;
+use App\Repositories\Contracts\IAuthRepository;
 use App\Repositories\Contracts\IUserRepository;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
-class UserRepository implements IUserRepository {
+class UserRepository implements IUserRepository, IAuthRepository {
 
-    public function insertData() {
+    protected $model;
 
+    /**
+     * EloquentUserRepository constructor.
+     *
+     * @param User $model
+     */
+    public function __construct(User $model)
+    {
+        $this->model = $model;
     }
-    
-    public function readData() {
 
+    /**
+     * @inheritDoc
+     */
+    public function getUserData($id = null , $email = null): User {
+        
+        if($email)
+        {
+            $user = $this->model::where('email', $email)->first();
+            return $user;
+        }
+
+        return $this->model::findOrFail($id);
     }
 
-    public function logout() {
+    /**
+     * @inheritDoc
+     */
+    public function updateUserData($id, $data): bool {
+        $findUser = $this->model::find($id);
 
+        return $findUser->update($data);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function authenticateUser(array $data):? string
+    {
+        $token = JWTAuth::attempt($data);
+
+        return $token;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function createUserData() {
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function signOut() {
     }
 }

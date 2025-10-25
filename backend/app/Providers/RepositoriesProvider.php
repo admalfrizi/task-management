@@ -14,7 +14,9 @@ class RepositoriesProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->singleton(IUserRepository::class, UserRepository::class);
+        $this->app->bind(IUserRepository::class, UserRepository::class);
+        $this->app->bind(\App\Repositories\Contracts\IAuthRepository::class, UserRepository::class);
+
         $this->app->singleton(ITaskRepository::class, TaskRepository::class);
     }
 
