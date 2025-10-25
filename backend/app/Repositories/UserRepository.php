@@ -27,7 +27,7 @@ class UserRepository implements IUserRepository, IAuthRepository {
      */
     public function getUserData($id = null , $email = null): User {
         
-        if($email)
+        if($email && $id == 0)
         {
             $user = $this->model::where('email', $email)->first();
             return $user;
@@ -39,10 +39,11 @@ class UserRepository implements IUserRepository, IAuthRepository {
     /**
      * @inheritDoc
      */
-    public function updateUserData($id, $data): bool {
+    public function updateUserData($id, $data): User {
         $findUser = $this->model::find($id);
+        $findUser->update($data);
 
-        return $findUser->update($data);
+        return $findUser;
     }
 
     /**
@@ -64,7 +65,8 @@ class UserRepository implements IUserRepository, IAuthRepository {
         $token = JWTAuth::fromUser($user);
         $tokenData = [
             "access_token" => $token,
-            "token_type" => "Bearer"
+            "token_type" => "Bearer",
+            'expires_in'   => JWTAuth::factory()->getTTL() * 60,
         ];
 
         return [

@@ -3,14 +3,12 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\User\UpdateUserRequest;
 use App\Models\User;
 use App\Services\Contracts\IUserService;
 use App\Trait\ResponseHelper;
-use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Validation\ValidationException;
-use Illuminate\Http\Request;
-use \Illuminate\Http\JsonResponse;
+use Illuminate\Http\JsonResponse;
 
 class UserController extends Controller
 {
@@ -46,9 +44,21 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user)
+    public function update(UpdateUserRequest $updateReq, $id): JsonResponse
     {
-        //
+        try 
+        {
+            $responseData = $this->userService->updateUserData( $updateReq->validated(),$id );
+            
+            return $this->responseSuccess(
+                $responseData, 
+                "User has been succesfully updated"
+            );
+        } 
+        catch (ModelNotFoundException $e) 
+        {
+            return $this->responseError('User not register in this system !', 404);
+        }
     }
 
     /**

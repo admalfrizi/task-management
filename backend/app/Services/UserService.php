@@ -2,10 +2,12 @@
 
 namespace App\Services;
 
+use App\Http\Resources\UserResponse;
 use App\Models\User;
 use App\Services\Contracts\IUserService;
 use App\Repositories\Contracts\IUserRepository;
 use App\Repositories\Contracts\IAuthRepository;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Tymon\JWTAuth\Exceptions\TokenInvalidException;
 use \Illuminate\Http\JsonResponse;
 
@@ -33,10 +35,20 @@ class UserService implements IUserService {
     /**
      * @inheritDoc
      */
+    public function updateUserData(array $data, $id): ?JsonResource 
+    {
+        $updateUser = $this->userRepository->updateUserData($id,$data);
+
+        return new UserResponse($updateUser);
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function authenticateUser(array $reqData): array 
     {
         $checkToken = $this->authRepository->authenticateUser($reqData);
-        $user = $this->userRepository->getUserData($email = $reqData["email"]);
+        $user = $this->userRepository->getUserData( 0,$reqData["email"]);
 
         if ( !$checkToken ) 
         {
@@ -44,7 +56,7 @@ class UserService implements IUserService {
         }
 
         return [
-            "user"=> $user,
+            "user"=> new UserResponse($user),
             "access_token" => $checkToken,
             "token_type" => "Bearer",
         ];
@@ -53,11 +65,11 @@ class UserService implements IUserService {
     /**
      * @inheritDoc
      */
-    public function getUserById(int $userId) :? User 
+    public function getUserById(int $userId) :? JsonResource 
     {
         $userData = $this->userRepository->getUserData($userId);
 
-        return $userData;
+        return new UserResponse($userData) ;
     }
 
     /**
@@ -66,4 +78,6 @@ class UserService implements IUserService {
     public function logout() {
         $this->authRepository->signOut();
     }
+
+    
 }

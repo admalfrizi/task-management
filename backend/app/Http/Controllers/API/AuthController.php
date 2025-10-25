@@ -32,13 +32,11 @@ class AuthController extends Controller
 
             return $this->responseSuccess(
                 $responseData, 
-                "Welcome, User"
+                "Welcome, User !"
             );
         } catch (ValidationException $e) {
             return $this->responseError($e->getMessage(), 400);
-        } catch (ModelNotFoundException $e) {
-            return $this->responseError('User not register in this system !', 404);
-        } catch (Exception $e) {
+        } catch (JWTException $e) {
             return $this->responseError($e->getMessage(), 400);
         }
     }

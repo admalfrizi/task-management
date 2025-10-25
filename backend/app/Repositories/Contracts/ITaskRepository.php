@@ -2,9 +2,12 @@
 
 namespace App\Repositories\Contracts;
 
+use App\Models\Task;
+
 interface ITaskRepository {
-    public function createNewData();
-    public function readData();
-    public function updateData();
-    public function deleteData();
+    public function addNewTask(array $data) : Task;
+    public function getOneTask($id) : ?array ;
+    public function getAllTask();
+    public function updateTask();
+    public function deleteTask();
 }
