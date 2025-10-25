@@ -15,7 +15,7 @@ export const AuthForm = ({isLogin, router} : AuthFormProps) => {
             {
                 isLogin ? <LoginTitle/> : <RegisterTitle/>
             } 
-            <Card className="w-full max-w-md sm:min-w=[520px] sm:p-5 bg-white">
+            <Card className="w-full border-0 max-w-md sm:min-w=[520px] sm:p-5 bg-card-auth">
                 {
                     isLogin ? <LoginForm /> : <RegisterForm router={router} />
                 }
@@ -23,8 +23,8 @@ export const AuthForm = ({isLogin, router} : AuthFormProps) => {
             { isLogin 
                 ? <div className="w-full text-center mt-8">
                     <Link href="/sign-up">
-                        <p className="font-roboto font-medium text-sm text-blue-700">
-                            Already have an Square account? Register
+                        <p className="font-roboto font-medium text-sm text-blue-400">
+                            Sudah punya akun sebelumnya ? Daftar Disini
                         </p>
                     </Link>
                 </div>

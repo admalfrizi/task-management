@@ -1,5 +1,24 @@
+interface LoginParams {
+    email : string;
+    password: string
+}
+
+interface User {
+    id: string;
+    fullname: string;
+    email: string;
+    role: string
+}
+
+interface LoginResponse {
+    user: User;
+    access_token: string;
+    token_type: string;
+}
+
 interface ResponseData<T> {
-    content?: T | null;
+    success: boolean;
+    code: number;
     message: string;
-    errors: string[]
+    data?: T | null;
 }
