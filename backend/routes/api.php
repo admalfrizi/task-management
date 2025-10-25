@@ -21,6 +21,7 @@ Route::middleware('jwt')->group(function () {
         Route::get('/', [TaskController::class,'index']);
         Route::get('/{id?}', [TaskController::class,'show']);
         Route::post('/create', [TaskController::class,'store']);
+        Route::post('/update/{id?}', [TaskController::class,'update']);
     });
 
     Route::prefix('/user')->group(function () {

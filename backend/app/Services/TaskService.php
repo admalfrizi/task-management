@@ -35,4 +35,20 @@ class TaskService implements ITaskService {
 
         return new TaskResponse($data);
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function updateTask(int $id, array $data): ?JsonResource 
+    {
+        $updatedData = $this->taskRepository->updateTask($id, $data);
+        return new TaskResponse($updatedData);
+    }
+
+    public function getTasks(int $userId): JsonResource 
+    {
+        $data = $this->taskRepository->getAllTask($userId);
+
+        return TaskResponse::collection($data);
+    }
 }
