@@ -30,7 +30,7 @@ class UserController extends Controller
             //$responseData = $this->userService->authenticateUser($loginReq->validated());
 
             return $this->responseSuccess(
-                "doqhwfpqw", 
+                $loginReq, 
                 "Welcome, User",
                 true
             );
