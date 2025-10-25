@@ -17,9 +17,11 @@ return new class extends Migration
             $table->string('title');
             $table->text('description')->nullable();
             $table->enum('status', ['todo', 'in_progress', 'done'])->default('todo');
-            $table->timestamps('deadline');
+            $table->date('deadline')->nullable();
             $table->string('created_by');
             $table->timestamps();
+
+            $table->index(['status', 'deadline']);
         });
     }
 

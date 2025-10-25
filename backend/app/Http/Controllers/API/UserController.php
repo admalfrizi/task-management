@@ -3,12 +3,19 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateUserRequest;
+use App\Http\Requests\LoginUserRequest;
 use App\Models\User;
 use App\Services\Contracts\IUserService;
+use App\Trait\ResponseHelper;
+use Exception;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Validation\ValidationException;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    use ResponseHelper;
 
     protected IUserService $userService;
 
@@ -17,20 +24,28 @@ class UserController extends Controller
         $this->userService = $userService;
     }
 
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function login(LoginUserRequest $loginReq): \Illuminate\Http\JsonResponse
     {
-        //
+        try {
+            //$responseData = $this->userService->authenticateUser($loginReq->validated());
+
+            return $this->responseSuccess(
+                "doqhwfpqw", 
+                "Welcome, User",
+                true
+            );
+        } catch (ValidationException $e) {
+            return $this->responseError($e->getMessage(), 400);
+        } catch (ModelNotFoundException $e) {
+            return $this->responseError('User not register in this system !', 404);
+        } catch (Exception $e) {
+            return $this->responseError($e->getMessage(), 400);
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function register(CreateUserRequest $userReq)
     {
-        //
+        return $this->userService->createUserData($userReq->validated());
     }
 
     /**

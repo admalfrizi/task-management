@@ -3,8 +3,7 @@
 namespace App\Repositories\Contracts;
 
 interface IUserRepository {
-    public function createNewData();
+    public function insertData();
     public function readData();
-    public function updateData();
-    public function deleteData();
+    public function logout();
 }

@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Services\Contracts\IUserService;
 use App\Repositories\Contracts\IUserRepository;
+use Illuminate\Validation\ValidationException;
 
 class UserService implements IUserService {
 
@@ -14,28 +15,35 @@ class UserService implements IUserService {
         $this->userRepository = $userRepository;
     }
 
-
     /**
      * @inheritDoc
      */
-    public function createNewData() {
+    public function createUserData(array $data): \Illuminate\Http\JsonResponse 
+    {
+
     }
 
     /**
      * @inheritDoc
      */
-    public function deleteData() {
+    public function authenticateUser(array $reqData) 
+    {
+
     }
 
     /**
      * @inheritDoc
      */
-    public function readData() {
+    public function deleteData() 
+    {
+
     }
 
     /**
      * @inheritDoc
      */
-    public function updateData() {
+    public function updateData() 
+    {
+        
     }
 }
