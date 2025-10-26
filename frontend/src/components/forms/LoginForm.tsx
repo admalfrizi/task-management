@@ -28,8 +28,6 @@ export const LoginTitle = () => {
 const errorStyle = 'text-red-500 text-sm my-3';
 
 export const LoginForm = () => {
-    
-
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
