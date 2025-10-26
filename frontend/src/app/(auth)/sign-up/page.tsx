@@ -1,4 +1,5 @@
-'use client'
+'use client';
+
 import { AuthForm } from "@/components/forms/AuthForm"
 import { useRouter } from "next/navigation";
 

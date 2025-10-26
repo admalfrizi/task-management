@@ -1,4 +1,6 @@
-import { ChangeEventHandler, MouseEventHandler } from "react";
+'use client';
+
+import { ChangeEventHandler, MouseEventHandler, useState } from "react";
 import { Input } from "./ui/input"
 import { Label } from "./ui/label"
 import { Eye, EyeOff } from "lucide-react";
@@ -8,28 +10,26 @@ interface TextFieldParams {
     type: string;
     id: string;
     name: string; 
-    isShowPass?: boolean;
     label: string;
     placeholder: string;
     value: string;
     onChange: ChangeEventHandler<HTMLInputElement> | undefined;
-    onShowPass?: MouseEventHandler<HTMLButtonElement> | undefined;
 }
 
 interface IconHidePassParams {
     type: string;
     isShow?: boolean;
-    onShowPass?: MouseEventHandler<HTMLButtonElement> | undefined;
+    onShowPass?: () => void;
 }
 
 const IconHidePass = ({type, isShow, onShowPass}:IconHidePassParams) => {
     return (
         <div className="absolute bottom-1 right-2"> 
             { type === "password" 
-                ? <Button size="icon-sm" onClick={onShowPass} className="text-gray-600 bg-transparent hover:bg-transparent">
+                ? <Button type="button" size="icon-sm" onClick={onShowPass} className="text-gray-600 bg-transparent hover:bg-transparent">
                     {
                         isShow 
-                        ? <Eye/> 
+                        ? <Eye size={20}/> 
                         : <EyeOff size={20}/>
                     }
                 </Button> 
@@ -39,12 +39,17 @@ const IconHidePass = ({type, isShow, onShowPass}:IconHidePassParams) => {
     )
 }
 
-const TextFields = ({type, id, name, placeholder, onShowPass, isShowPass, label, value, onChange} :TextFieldParams ) => {
+const TextFields = ({type, id, name, placeholder, label, value, onChange} :TextFieldParams ) => {
+    const [showPassword, setShowPassword] = useState(false);
     
     return (
         <div className="relative mt-6">
             <Input
-                type={type}
+                type={
+                    id === 'password' 
+                        ? showPassword ? "text" : "password"
+                        : type
+                }
                 id={id}
                 name={name}
                 value={value}
@@ -63,7 +68,7 @@ const TextFields = ({type, id, name, placeholder, onShowPass, isShowPass, label,
             >
                 {label}
             </Label>
-            <IconHidePass type={type} isShow={isShowPass} onShowPass={onShowPass}/>
+            <IconHidePass type={type} isShow={showPassword} onShowPass={() => setShowPassword(!showPassword)}/>
         </div>
     )
 }

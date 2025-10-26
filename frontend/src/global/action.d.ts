@@ -10,15 +10,25 @@ interface User {
     role: string
 }
 
+interface ErrorList {
+    type: string;
+    errorValue: string
+}
+
 interface LoginResponse {
     user: User;
     access_token: string;
     token_type: string;
 }
 
-interface ResponseData<T> {
+interface RegisterResponse {
+    user: User;
+    token: string;
+}
+
+interface ResponseData<T, U> {
     success: boolean;
     code: number;
     message: string;
-    data?: T | null;
+    data: T | U | null;
 }
