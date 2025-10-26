@@ -1,37 +1,46 @@
-# **TaskMaster: A Web-Based Task Management App**
+# **Task Management System Web**
 
 ## **1\. Overview**
 
-TaskMaster is a modern, responsive web application designed to help individuals and teams organize, track, and manage their tasks efficiently. From simple to-do lists to more complex project management, this tool provides a clean and intuitive interface to boost productivity.
+Website ini merupakan sistem manajemen task yang dapat memungkinkan pengguna untuk membuat dan mengelola tugas - tugas yang berkaitan dengan pekerjaan professional serta dapat memantau perkembangan dari projek - projek yang telah dan sedang dikerjakan.
 
-This project serves as a comprehensive solution for personal productivity and team collaboration.
+Sistem ini dibangun menggunakan Frontend dan Backend dengan beberapa tech stack seperti Laravel, NextJS 16, MySQL dan RestFul API
 
-## **2\. Key Features**
+## **2\. Folder Structure**
 
-* **User Authentication:** Secure user registration and login system.  
-* **Task CRUD:** Full Create, Read, Update, and Delete functionality for tasks.  
-* **Drag-and-Drop:** Intuitively change task status (e.g., "To-Do," "In Progress," "Completed") by dragging cards between columns.  
-* **Task Prioritization:** Assign priority levels (e.g., High, Medium, Low) to tasks.  
-* **Due Dates:** Add deadlines to tasks with a calendar-based date picker.  
-* **Responsive Design:** Fully usable on both desktop and mobile devices.  
-* **Filtering & Sorting:** Easily find tasks by status, priority, or due date.  
-* **Project Categories:** (Optional) Group tasks into different projects or lists.
+task-management/
+├── backend/               # Service backend (Laravel)
+│   ├── src/
+│   ├── .env.example
+│   ├── README.md
+│   └── dll...
+├── frontend/              # Service frontend (Next.js)
+│   ├── src/
+│   ├── .env.example
+│   ├── README.md
+│   └── dll...
+├── Task Management System.postman_collection.json #    Kumpulan endpoint API untuk Postman
+├── task_management.sql    # Dump database
+├── README.md              # Dokumentasi utama proyek
+└── screenshots            # Screenshot tampilan 
+    ├── login page.png
+    ├── register page.png
+    ├── task management page.png
+    └── add-edit task modal.png
 
 ## **3\. Tech Stack**
 
 This project is built with a modern web stack. (You can update this section with your specific technologies).
 
 * **Frontend:**  
-  * React.js (or Vue.js / Angular / Svelte)  
-  * Tailwind CSS (or CSS Modules / Styled-Components)  
-  * React Router (for navigation)  
+  * NextJS 16 
+  * Tailwind CSS (or CSS Modules / Styled-Components)
 * **Backend:**  
-  * Node.js  
-  * Express.js  
+  * Laravel
   * JSON Web Tokens (JWT) for authentication  
+  * Eloquent ORM
 * **Database:**  
-  * MongoDB (with Mongoose)  
-  * (or PostgreSQL, MySQL with an ORM like Prisma or TypeORM)
+  * MySQL
 
 ## **4\. Getting Started**
 
@@ -108,4 +117,3 @@ Contributions are welcome\! If you'd like to help improve this project, please f
 ## **7\. Author**
 
 * **Adam Alfarizi Ismail** \- [adam.alfarizi.2002@gmail.com](mailto:your-email@example.com)  
-* Project Link: [https://github.com/your-username/your-repo-name](https://www.google.com/search?q=https://github.com/your-username/your-repo-name)
