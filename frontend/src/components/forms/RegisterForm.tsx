@@ -16,8 +16,10 @@ type ErrorCheck = {
     username?: string[] | undefined;
     email?: string[] | undefined;
     password?: string[] | undefined;
-    cpassword?: string[] | undefined;
+    confirmPassword?: string | undefined;
 };
+
+const errorStyle = 'text-red-500 text-sm my-3';
 
 export const RegisterTitle = () => {
     return (
@@ -67,10 +69,13 @@ export const RegisterForm = ({ router } : RegisterProps ) => {
         else 
         {
             const errorData = registerResponse.data as ErrorList[];
-            // setErrors({
-            //     email: [ errorData[0].errorValue ],
-            //     password: [ errorData[1].errorValue ]
-            // });
+            setErrors({
+                name: [ errorData[0].errorValue ],
+                username: [ errorData[1].errorValue ],
+                email: [ errorData[2].errorValue ],
+                password: [ errorData[3].errorValue ],
+                confirmPassword: errorData[4] === undefined ? "" : errorData[4].errorValue
+            });
 
             console.log("error : ", errorData);
         }
@@ -78,7 +83,8 @@ export const RegisterForm = ({ router } : RegisterProps ) => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <div className="flex flex-col space-y-8">
+            
+            <div className={`flex flex-col ${errors !== undefined ? "space-y-0" : "space-y-8" } `}>
                 <TextFields 
                     type="name" 
                     placeholder="Masukan Nama Lengkap" 
@@ -88,6 +94,7 @@ export const RegisterForm = ({ router } : RegisterProps ) => {
                     onChange={(e) => setName(e.target.value)} 
                     label={"Nama Anda"}
                 />
+                {errors?.name && <p className={errorStyle}>{errors?.name}</p>}
                 <TextFields 
                     type="name" 
                     placeholder="Masukan Username" 
@@ -97,6 +104,7 @@ export const RegisterForm = ({ router } : RegisterProps ) => {
                     onChange={(e) => setUsername(e.target.value)} 
                     label={"Username Anda"}
                 />
+                {errors?.username && <p className={errorStyle}>{errors?.username}</p>}
                 <TextFields 
                     type="email" 
                     placeholder="Masukan Email" 
@@ -105,10 +113,11 @@ export const RegisterForm = ({ router } : RegisterProps ) => {
                     onChange={(e) => setEmail(e.target.value)} 
                     label={"Email"}
                 />
+                {errors?.email && <p className={errorStyle}>{errors?.email}</p>}
                 <div className="flex flex-row justify-between w-full">
                     <TextFields 
                         type="password" 
-                        placeholder="Masukan Password" 
+                        placeholder="••••••••" 
                         id="password" 
                         name="password" 
                         value={password} 
@@ -117,7 +126,7 @@ export const RegisterForm = ({ router } : RegisterProps ) => {
                     />
                     <TextFields 
                         type="password" 
-                        placeholder="Konfirmasi Ulang Password" 
+                        placeholder="••••••••" 
                         id="cpassword" 
                         name="cpassword" 
                         value={cpassword} 
@@ -125,7 +134,8 @@ export const RegisterForm = ({ router } : RegisterProps ) => {
                         label={"Konfirmasi Password"}
                     />
                 </div>
-                <div className="flex gap-x-4 w-full mt-5">
+                {errors?.confirmPassword && <p className={errorStyle}>{errors?.confirmPassword}</p>}
+                <div className={`flex gap-x-4 w-full ${errors !== undefined ? "mt-8" : "mt-5"}`}>
                     <Link href="/sign-in" className="flex-1 py-3 px-5 text-center text-xs font-poppins font-semibold text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-300">
                         Login
                     </Link>

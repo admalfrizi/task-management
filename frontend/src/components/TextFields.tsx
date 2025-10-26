@@ -46,7 +46,7 @@ const TextFields = ({type, id, name, placeholder, label, value, onChange} :TextF
         <div className="relative mt-6">
             <Input
                 type={
-                    id === 'password' 
+                    id === 'password' || id === 'cpassword'
                         ? showPassword ? "text" : "password"
                         : type
                 }
