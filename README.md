@@ -80,43 +80,42 @@ Projek ini menggunakan beberapa tech stack modern sebagai berikut
    ```
 
 3. **Instalasi Frontend :**  
-   \# Navigate to the frontend/client directory from the root  
-   cd ../client  
+   \# Navigate to the /frontend directory  
+   cd frontend 
    npm install
 
-4. **Set up Environment Variables:**  
-   * In the server directory, create a .env file.  
-   * Add your environment variables, such as:
+   
+   \# Setup untuk .env file
+   cp .env.example .env
 
-DATABASE\_URL=your\_mongodb\_connection\_string  
-JWT\_SECRET=your\_super\_secret\_key  
-PORT=5000
-
-### **Running the Application**
-
-1. **Start the Backend Server:**  
-   \# From the server directory  
+   \# Edit file .env dan sesuaikan URL backend API sesuai server Laravel:
+   ```bash
+   NEXT_PUBLIC_API_URL=http://127.0.0.1:8000/api
+   ```
+   \# Jalankan Server 
+   ```bash
    npm run dev
+   ```
 
-   The server will typically run on http://localhost:5000.  
-2. **Start the Frontend App:**  
-   \# From the client directory  
-   npm start
+## **4\. Contoh Data Dummy**
+  
+| Name   | Email            | Password |
+|--------|----------------- |-----------|
+| User1  | user1@gmail.com  | qazwerttwa |
 
-   The app will open in your browser at http://localhost:3000.
 
-## **5\. How to Use**
+## **5\. Tabel Data Task Management**
 
-1. **Register:** Create a new account with your email and a password.  
-2. **Login:** Sign in to your account to access your dashboard.  
-3. **Create a Task:** Click the "New Task" button, fill in the title, description, priority, and due date.  
-4. **Manage Tasks:**  
-   * Click on a task to view its details.  
-   * Click the "Edit" icon to update it.  
-   * Click the "Delete" icon to remove it.  
-   * Drag and drop the task card to a new status column.
+Tabel utama dalam sistem ini:
 
-## **6\. Contributing**
+| Tabel | Deskripsi |
+|-------|------------|
+| `users` | Menyimpan data pengguna |
+| `tasks` | Menyimpan daftar tugas yang dibuat oleh user |
+
+---
+
+## **5\. Hasil Screenshot**
 
 Contributions are welcome\! If you'd like to help improve this project, please follow these steps:
 
