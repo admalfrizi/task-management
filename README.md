@@ -34,7 +34,7 @@ task-management/
 
 ## **3\. Tech Stack**
 
-This project is built with a modern web stack. (You can update this section with your specific technologies).
+Projek ini menggunakan beberapa tech stack modern sebagai berikut
 
 * **Frontend:**  
   * NextJS 16 
@@ -46,31 +46,29 @@ This project is built with a modern web stack. (You can update this section with
 * **Database:**  
   * MySQL
 
-## **4\. Getting Started**
-
-Follow these instructions to get a local copy up and running for development and testing.
-
-### **Prerequisites**
-
-You will need the following tools installed on your system:
-
-* Node.js (v18 or later)  
-* npm (or yarn)  
-* Git  
-* A MongoDB database instance (local or cloud-based like MongoDB Atlas)
-
-### **Installation**
+### **Cara Setup Pertama Kali**
 
 1. **Clone the repository:**  
-   git clone \[https://github.com/your-username/your-repo-name.git\](https://github.com/your-username/your-repo-name.git)  
-   cd your-repo-name
+   git clone \[https://github.com/admalfrizi/task-management.git\]  
+   cd task-management
 
-2. **Install Backend Dependencies:**  
-   \# Navigate to the backend/server directory  
-   cd server  
-   npm install
+2. **Instalasi Backend :**  
+   \# Navigate to the /backend directory  
+   cd backend  
+   composer install
+   composer require
+   
+   \# Setup untuk .env file
+   ```
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=task_db
+   DB_USERNAME=root
+   DB_PASSWORD=
+   ```
 
-3. **Install Frontend Dependencies:**  
+3. **Instalasi Frontend :**  
    \# Navigate to the frontend/client directory from the root  
    cd ../client  
    npm install
