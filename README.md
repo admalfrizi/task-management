@@ -104,11 +104,8 @@ Contributions are welcome\! If you'd like to help improve this project, please f
 4. Push to the Branch (git push origin feature/AmazingFeature)  
 5. Open a Pull Request
 
-## **7\. License**
 
-Distributed under the MIT License. See the LICENSE file for more information.
+## **7\. Author**
 
-## **8\. Author**
-
-* **Your Name** \- [your-email@example.com](mailto:your-email@example.com)  
+* **Adam Alfarizi Ismail** \- [adam.alfarizi.2002@gmail.com](mailto:your-email@example.com)  
 * Project Link: [https://github.com/your-username/your-repo-name](https://www.google.com/search?q=https://github.com/your-username/your-repo-name)
