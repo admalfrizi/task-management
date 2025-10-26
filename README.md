@@ -8,6 +8,7 @@ Sistem ini dibangun menggunakan Frontend dan Backend dengan beberapa tech stack 
 
 ## **2\. Folder Structure**
 
+```
 task-management/
 ├── backend/               # Service backend (Laravel)
 │   ├── src/
@@ -27,6 +28,9 @@ task-management/
     ├── register page.png
     ├── task management page.png
     └── add-edit task modal.png
+```
+
+---
 
 ## **3\. Tech Stack**
 
