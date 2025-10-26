@@ -121,6 +121,10 @@ Sign In Page | Sign Up Page
 --- | --- 
 ![](https://raw.githubusercontent.com/admalfrizi/task-management/refs/heads/master/screenshot/Screenshot%20(85).png?token=GHSAT0AAAAAADN5LRTR6I55GS6HH2Q6WDVI2H54OBA) | ![](https://raw.githubusercontent.com/admalfrizi/task-management/refs/heads/master/screenshot/Screenshot%20(86).png?token=GHSAT0AAAAAADN5LRTRXSPQB53Y3S6BVSUG2H54PAQ)
 
+Main Page 
+|  ---  |
+![](https://raw.githubusercontent.com/admalfrizi/task-management/refs/heads/master/screenshot/Screenshot%20(87).png?token=GHSAT0AAAAAADN5LRTQDSMUOQ4LJCCY4DL62H54Q5A)
+
 ## **7\. Author**
 
 * **Adam Alfarizi Ismail** \- [adam.alfarizi.2002@gmail.com](mailto:your-email@example.com)  
