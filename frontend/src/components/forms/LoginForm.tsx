@@ -8,11 +8,17 @@ import { useForm } from "react-hook-form";
 import { signIn } from "@/lib/action/auth.action";
 import { loginSchema, TLoginSchema } from "@/lib/validation";
 import router from "next/router";
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 
 type ErrorCheck = {
   email?: string[] | undefined;
   password?: string[] | undefined;
 };
+
+type LoginProps = {
+    router ?: AppRouterInstance
+}
+
 
 export const LoginTitle = () => {
     return (
@@ -27,7 +33,7 @@ export const LoginTitle = () => {
 
 const errorStyle = 'text-red-500 text-sm my-3';
 
-export const LoginForm = () => {
+export const LoginForm = ({ router } : LoginProps ) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -35,7 +41,6 @@ export const LoginForm = () => {
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-
         setErrors(undefined);
 
         const stateData = {
@@ -50,7 +55,7 @@ export const LoginForm = () => {
             setEmail("");
             setPassword("");
 
-            console.log("success :", loginResponse)
+            router?.push("/");
         }
         else 
         {

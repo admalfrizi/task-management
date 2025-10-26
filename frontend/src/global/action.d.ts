@@ -26,6 +26,14 @@ interface RegisterResponse {
     token: string;
 }
 
+interface Task {
+    id : integer,
+    title : string,
+    description: string,
+    status : string,
+    deadline : string
+}
+
 interface ResponseData<T, U> {
     success: boolean;
     code: number;

@@ -3,6 +3,7 @@
 import { cookies } from "next/headers";
 import { api } from "../api";
 import { loginSchema, registerSchema, TLoginSchema, TRegisterSchema } from "../validation";
+import Cookies from 'js-cookie';
 
 export async function signIn(data: TLoginSchema) : Promise<ResponseData<LoginResponse, ErrorList[]>>  {
     const validateData = loginSchema.safeParse(data);
@@ -32,19 +33,20 @@ export async function signIn(data: TLoginSchema) : Promise<ResponseData<LoginRes
         const { email, password } = validateData.data;
         const response = await api.post('login', { email, password });
 
-        // (await cookies()).set('auth_token', access_token, {
-        //     httpOnly: true,
-        //     secure: process.env.NODE_ENV === 'production',
-        //     sameSite: 'strict',
-        //     path: '/',
-        //     maxAge: 60 * 60 * 24 * 7, // 7 days
-        // });
+        const userData = response.data.data;
+
+        (await cookies()).set('auth_token', userData.access_token , {
+            secure: false,
+            sameSite: 'lax',
+            expires: 3600,
+            path: '/',
+        });
 
         return {
             success: true, 
             code: 200, 
             message: response.data.message, 
-            data: response.data
+            data: userData
         }
     } 
     catch (error)
@@ -86,16 +88,7 @@ export async function signUp(data: TRegisterSchema) : Promise<ResponseData<Regis
     try
     {
         const response = await api.post('register', validateData.data);
-
         console.log("result", response.data)
-
-        // (await cookies()).set('auth_token', access_token, {
-        //     httpOnly: true,
-        //     secure: process.env.NODE_ENV === 'production',
-        //     sameSite: 'strict',
-        //     path: '/',
-        //     maxAge: 60 * 60 * 24 * 7, // 7 days
-        // });
 
         return {
             success: true, 

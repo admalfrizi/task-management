@@ -17,6 +17,7 @@ type ErrorCheck = {
     email?: string[] | undefined;
     password?: string[] | undefined;
     confirmPassword?: string | undefined;
+    passEmpty?: string | undefined;
 };
 
 const errorStyle = 'text-red-500 text-sm my-3';
@@ -64,7 +65,7 @@ export const RegisterForm = ({ router } : RegisterProps ) => {
             setPassword("");
             setCPassword("");
 
-            console.log("success :", registerResponse)
+            router?.push("/sign-in");
         }
         else 
         {
@@ -73,8 +74,8 @@ export const RegisterForm = ({ router } : RegisterProps ) => {
                 name: [ errorData[0].errorValue ],
                 username: [ errorData[1].errorValue ],
                 email: [ errorData[2].errorValue ],
-                password: [ errorData[3].errorValue ],
-                confirmPassword: errorData[4] === undefined ? "" : errorData[4].errorValue
+                confirmPassword: errorData[4] === undefined ? "" : errorData[4].errorValue,
+                passEmpty: password == "" && cpassword == "" ? "Password can't be empty" : ""
             });
 
             console.log("error : ", errorData);
@@ -133,6 +134,7 @@ export const RegisterForm = ({ router } : RegisterProps ) => {
                         label={"Konfirmasi Password"}
                     />
                 </div>
+                {errors?.passEmpty && <p className={errorStyle}>{errors?.passEmpty}</p>}
                 {errors?.confirmPassword && <p className={errorStyle}>{errors?.confirmPassword}</p>}
                 <div className={`flex gap-x-4 w-full ${errors !== undefined ? "mt-8" : "mt-5"}`}>
                     <Link href="/sign-in" className="flex-1 py-3 px-5 text-center text-xs font-poppins font-semibold text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-300">
