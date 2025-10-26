@@ -3,7 +3,6 @@
 import { cookies } from "next/headers";
 import { api } from "../api";
 import { loginSchema, registerSchema, TLoginSchema, TRegisterSchema } from "../validation";
-import Cookies from 'js-cookie';
 
 export async function signIn(data: TLoginSchema) : Promise<ResponseData<LoginResponse, ErrorList[]>>  {
     const validateData = loginSchema.safeParse(data);

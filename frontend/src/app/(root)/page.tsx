@@ -19,7 +19,7 @@ const dashboardPage = () => {
                     <div className="flex flex-row">
                         <Select>
                             <SelectTrigger className="w-[180px] bg-amber-500 text-white">
-                                <SelectValue className="data-placeholder:text-white" placeholder="Select a Filter" />
+                                <SelectValue placeholder="Select a Filter" />
                             </SelectTrigger>
                             <SelectContent>
                                 <SelectGroup>
@@ -60,22 +60,22 @@ const dashboardPage = () => {
                             <tbody>
                                 <tr className="bg-gray-800">
                                     <th scope="row" className="px-6 py-4 font-medium text-white whitespace-nowrap dark:text-white">
-                                        Apple MacBook Pro 17"
+                                        Tugas 1
                                     </th>
                                     <td className="px-6 py-4">
-                                        Silver
+                                        Deskripsi dari Tugas 1
                                     </td>
                                     <td className="px-6 py-4">
-                                        Laptop
+                                        To-do
                                     </td>
                                     <td className="px-6 py-4">
-                                        -
+                                        2023-12-22
                                     </td>
                                     <td className="px-6 py-4">
-                                        -
+                                        Adam Alfarizi Ismail
                                     </td>
                                     <td className="px-6 py-4">
-                                        -
+                                        
                                     </td>
                                 </tr>
                             </tbody>

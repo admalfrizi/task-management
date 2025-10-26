@@ -34,9 +34,9 @@ interface Task {
     deadline : string
 }
 
-interface ResponseData<T, U> {
+interface ResponseData<T, U = void> {
     success: boolean;
     code: number;
     message: string;
-    data: T | U | null;
+    data: T | ?U | null;
 }

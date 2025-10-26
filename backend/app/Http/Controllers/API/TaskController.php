@@ -30,7 +30,7 @@ class TaskController extends Controller
         try 
         {
             $userId = Auth::id();
-            $responseData = $this->taskService->getTasks($userId);
+            $responseData = $this->taskService->getTasks($userId,);
 
             return $this->responseSuccess(
             $responseData,
