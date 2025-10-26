@@ -68,6 +68,17 @@ Projek ini menggunakan beberapa tech stack modern sebagai berikut
    DB_PASSWORD=
    ```
 
+   \# Generate untuk JWT Secret Key
+   ```bash
+   php artisan key:generate
+   php artisan jwt:secret
+   ```
+
+   \# Jalankan Server 
+   ```bash
+   php artisan serve
+   ```
+
 3. **Instalasi Frontend :**  
    \# Navigate to the frontend/client directory from the root  
    cd ../client  
