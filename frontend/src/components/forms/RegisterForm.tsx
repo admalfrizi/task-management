@@ -3,7 +3,6 @@
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime"
 import TextFields from "../TextFields"
 import { Button } from "../ui/button"
-import { Textarea } from "../ui/textarea"
 import Link from "next/link"
 import { useState } from "react"
 import { signUp } from "@/lib/action/auth.action";
@@ -68,12 +67,12 @@ export const RegisterForm = ({ router } : RegisterProps ) => {
         else 
         {
             const errorData = registerResponse.data as ErrorList[];
-            setErrors({
-                email: [ errorData[0].errorValue ],
-                password: [ errorData[1].errorValue ]
-            });
+            // setErrors({
+            //     email: [ errorData[0].errorValue ],
+            //     password: [ errorData[1].errorValue ]
+            // });
 
-            console.log("error : ", errors);
+            console.log("error : ", errorData);
         }
     };
 
@@ -130,7 +129,7 @@ export const RegisterForm = ({ router } : RegisterProps ) => {
                     <Link href="/sign-in" className="flex-1 py-3 px-5 text-center text-xs font-poppins font-semibold text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-300">
                         Login
                     </Link>
-                    <Button className="flex-4 py-3 px-5 text-center text-xs font-poppins font-semibold text-white bg-color-auth rounded-lg hover:bg-cyan-900 focus:outline-none focus:ring-0 focus:ring-blue-500">
+                    <Button type="submit" className="flex-4 py-3 px-5 text-center text-xs font-poppins font-semibold text-white bg-color-auth rounded-lg hover:bg-cyan-900 focus:outline-none focus:ring-0 focus:ring-blue-500">
                         Register
                     </Button>
                 </div>
