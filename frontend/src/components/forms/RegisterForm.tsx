@@ -83,7 +83,6 @@ export const RegisterForm = ({ router } : RegisterProps ) => {
 
     return (
         <form onSubmit={handleSubmit}>
-            
             <div className={`flex flex-col ${errors !== undefined ? "space-y-0" : "space-y-8" } `}>
                 <TextFields 
                     type="name" 

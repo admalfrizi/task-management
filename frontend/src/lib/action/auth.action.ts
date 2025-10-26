@@ -73,6 +73,8 @@ export async function signUp(data: TRegisterSchema) : Promise<ResponseData<Regis
             errorList.push(errorData)
         })
 
+        console.log("result : ", validateData.error?.issues);
+
         return { 
             success: false, 
             code: 400, 
