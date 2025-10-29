@@ -1,5 +1,6 @@
 import axios, { AxiosInstance } from "axios";
 import Cookies from "js-cookie";
+import { cookies } from "next/headers";
 
 export const api : AxiosInstance = axios.create({
     baseURL: 'http://localhost:8000/api',
@@ -10,8 +11,8 @@ export const api : AxiosInstance = axios.create({
 });
 
 api.interceptors.request.use(
-  (config) => {
-    const token = Cookies.get("auth_token");
+  async (config) => {
+    const token = (await cookies()).get("auth_token")?.value;
     
     if (token) {
       config.headers['Authorization'] = `Bearer ${token}`;

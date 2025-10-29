@@ -1,3 +1,5 @@
+'use server';
+
 import { cookies } from "next/headers";
 import { api } from "../api";
 
@@ -5,12 +7,7 @@ export async function allTaskByUserId() : Promise<ResponseData<Array<Task>>>
 {
     try
     {
-        const dataCookies = await cookies();
-        const response = await api.get(`task` , {
-            headers: {
-                'Authorization': `Bearer ${dataCookies.get('auth_token')}`
-            }
-        });
+        const response = await api.get("task");
 
         return {
             success: true, 
@@ -34,11 +31,7 @@ export async function getTask(id: string) : Promise<ResponseData<Task>> {
     try
     {
         const dataCookies = await cookies();
-        const response = await api.get(`task/${id}` , {
-            headers: {
-                'Authorization': `Bearer ${dataCookies.get('auth_token')}`
-            }
-        });
+        const response = await api.get(`task/${id}`);
 
         return {
             success: true, 

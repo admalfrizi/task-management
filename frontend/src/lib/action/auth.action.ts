@@ -110,3 +110,27 @@ export async function signUp(data: TRegisterSchema) : Promise<ResponseData<Regis
         }
     }
 }
+
+export async function getUserAuthenticated(userId : string) : Promise<ResponseData<User>>
+{
+    try
+    {
+        const response = await api.get(`user/${userId}`);
+
+        return {
+            success: true, 
+            code: 200, 
+            message: response.data.message, 
+            data: response.data
+        }
+    } 
+    catch (error)
+    {
+        return {
+            success: false, 
+            code: 500, 
+            message: "Server Error", 
+            data: null
+        }
+    }
+}
