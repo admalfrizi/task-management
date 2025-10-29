@@ -22,6 +22,7 @@ Route::middleware('jwt')->group(function () {
         Route::get('/{id?}', [TaskController::class,'show']);
         Route::post('/create', [TaskController::class,'store']);
         Route::post('/update/{id?}', [TaskController::class,'update']);
+        Route::delete('/{id?}', [TaskController::class,'destroy']);
     });
 
     Route::prefix('/user')->group(function () {
