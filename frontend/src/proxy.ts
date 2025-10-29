@@ -6,8 +6,6 @@ export function proxy(request: NextRequest)
     const token = request.cookies.get("auth_token");
     const { pathname } = request.nextUrl;
 
-    console.log("token", token)
-
     if (token?.value && (pathname === '/sign-in' || pathname === '/sign-up')) {
       return NextResponse.redirect(new URL("/", request.url));
     }
