@@ -3,8 +3,22 @@
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { allTaskByUserId } from "@/lib/action/task.action"
+import { useEffect, useState } from "react"
 
 const dashboardPage = () => {
+    const [ task, setTask ] = useState<Task[]>([])
+
+    useEffect(() => {
+        const getTaskData = async () => {
+            const response = await allTaskByUserId();
+            const data = response.data;
+
+            setTask(data!!)
+        }
+
+        getTaskData();
+    },[])
 
     return (
         <div className="flex flex-col items-center px-5 md:px-24">
@@ -58,26 +72,29 @@ const dashboardPage = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr className="bg-gray-800">
-                                    <th scope="row" className="px-6 py-4 font-medium text-white whitespace-nowrap dark:text-white">
-                                        Tugas 1
-                                    </th>
-                                    <td className="px-6 py-4">
-                                        Deskripsi dari Tugas 1
-                                    </td>
-                                    <td className="px-6 py-4">
-                                        To-do
-                                    </td>
-                                    <td className="px-6 py-4">
-                                        2023-12-22
-                                    </td>
-                                    <td className="px-6 py-4">
-                                        Adam Alfarizi Ismail
-                                    </td>
-                                    <td className="px-6 py-4">
-                                        
-                                    </td>
-                                </tr>
+                                { task.map((data, idx) => (
+                                    <tr key={idx} className="bg-gray-800">
+                                        <th scope="row" className="px-6 py-4 font-medium text-white whitespace-nowrap dark:text-white">
+                                            {data.title}
+                                        </th>
+                                        <td className="px-6 py-4">
+                                            {data.description}
+                                        </td>
+                                        <td className="px-6 py-4">
+                                            {data.status}
+                                        </td>
+                                        <td className="px-6 py-4">
+                                            {data.deadline}
+                                        </td>
+                                        <td className="px-6 py-4">
+                                            {data.id}
+                                        </td>
+                                        <td className="px-6 py-4">
+                                            
+                                        </td>
+                                    </tr>
+                                ))
+                                }
                             </tbody>
                         </table>
                     </div>

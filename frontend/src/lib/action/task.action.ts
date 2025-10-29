@@ -13,7 +13,7 @@ export async function allTaskByUserId() : Promise<ResponseData<Array<Task>>>
             success: true, 
             code: 200, 
             message: response.data.message, 
-            data: response.data
+            data: response.data.data
         }
     } 
     catch (error)
