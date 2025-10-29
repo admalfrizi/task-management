@@ -3,11 +3,7 @@
 import { Button } from "../ui/button"
 import TextFields from "../TextFields"
 import { useEffect, useState } from "react"
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
 import { signIn } from "@/lib/action/auth.action";
-import { loginSchema, TLoginSchema } from "@/lib/validation";
-import router from "next/router";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 
 type ErrorCheck = {
