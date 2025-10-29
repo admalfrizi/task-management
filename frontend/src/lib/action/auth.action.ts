@@ -30,14 +30,18 @@ export async function signIn(data: TLoginSchema) : Promise<ResponseData<LoginRes
     try
     {
         const { email, password } = validateData.data;
-        const response = await api.post('login', { email, password });
+        const response = await api.post('login', { email, password }, {
+            withCredentials: true
+        });
+        const dataCookies = await cookies();
 
         const userData = response.data.data;
 
-        (await cookies()).set('auth_token', userData.access_token , {
-            secure: false,
-            sameSite: 'lax',
-            expires: 3600,
+        dataCookies.set('auth_token', userData.access_token , {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'strict',
+            maxAge: 3600,
             path: '/',
         });
 

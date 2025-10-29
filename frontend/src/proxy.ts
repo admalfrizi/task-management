@@ -6,22 +6,25 @@ export function proxy(request: NextRequest)
     const token = request.cookies.get("auth_token");
     const { pathname } = request.nextUrl;
 
-    // if (token && (pathname === '/sign-in' || pathname === '/sign-up')) {
-    //   return NextResponse.redirect(new URL("/", request.url));
-    // }
+    console.log("token", token)
 
-    // if(!token && pathname === '/')
-    // {
-    //   return NextResponse.redirect(new URL("/sign-in", request.url));
-    // }
+    if (token?.value && (pathname === '/sign-in' || pathname === '/sign-up')) {
+      return NextResponse.redirect(new URL("/", request.url));
+    }
+
+    if(!token && pathname.startsWith('/'))
+    {
+      return NextResponse.redirect(new URL("/sign-in", request.url));
+    }
 
     return NextResponse.next();
 }
 
 export const config = {
   matcher: [
-    "/",
-    "/sign-in",
-    "/sign-up",
+    // "/",
+    // "/sign-in",
+    // "/sign-up",
+    '/((?!_next/static|_next/image|favicon.ico|sign-in).*)'
   ],
 };

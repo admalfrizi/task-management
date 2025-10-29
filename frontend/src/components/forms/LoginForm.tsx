@@ -2,7 +2,7 @@
 
 import { Button } from "../ui/button"
 import TextFields from "../TextFields"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { signIn } from "@/lib/action/auth.action";
@@ -18,7 +18,6 @@ type ErrorCheck = {
 type LoginProps = {
     router ?: AppRouterInstance
 }
-
 
 export const LoginTitle = () => {
     return (
@@ -36,8 +35,15 @@ const errorStyle = 'text-red-500 text-sm my-3';
 export const LoginForm = ({ router } : LoginProps ) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [success, setSuccess] = useState(false);
 
     const [errors, setErrors] = useState<ErrorCheck | undefined>();
+
+    useEffect(() => {
+        if(success)
+            window.location.href = '/';
+        
+    }, [success])
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -54,8 +60,7 @@ export const LoginForm = ({ router } : LoginProps ) => {
         {
             setEmail("");
             setPassword("");
-
-            router?.push("/");
+            setSuccess(true);
         }
         else 
         {
