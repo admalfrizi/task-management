@@ -102,8 +102,20 @@ class TaskController extends Controller
     }
 
     
-    public function destroy(Task $task)
+    public function destroy($id)
     {
-        //
+        try 
+        {
+            $responseData = $this->taskService->deleteTask($id);
+            
+            return $this->responseSuccess(
+                $responseData, 
+                "Task data has been succesfully deleted"
+            );
+        } 
+        catch (ModelNotFoundException $e) 
+        {
+            return $this->responseError('Data is not exist in this system !', 404);
+        }
     }
 }

@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Http\Resources\TaskResponse;
 use App\Repositories\Contracts\ITaskRepository;
 use App\Services\Contracts\ITaskService;
+use Exception;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class TaskService implements ITaskService {
@@ -50,5 +51,13 @@ class TaskService implements ITaskService {
         $data = $this->taskRepository->getAllTask($userId);
 
         return TaskResponse::collection($data);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function deleteTask(int $id): ?bool 
+    {
+        return $this->taskRepository->deleteTask($id);
     }
 }

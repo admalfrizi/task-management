@@ -9,4 +9,6 @@ interface ITaskService {
     public function getTasks(int $userId) : ? JsonResource;
     public function createNewTask(array $data): ? JsonResource;
     public function updateTask(int $id, array $data) : ?JsonResource;
+
+    public function deleteTask(int $id) : ? bool;
 }

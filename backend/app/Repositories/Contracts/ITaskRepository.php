@@ -11,5 +11,5 @@ interface ITaskRepository {
     public function getOneTask($id) : ?Task ;
     public function getAllTask($userId): Collection;
     public function updateTask($id, array $data) : Task;
-    public function deleteTask();
+    public function deleteTask($id) : bool;
 }

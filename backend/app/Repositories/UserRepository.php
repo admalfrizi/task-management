@@ -63,6 +63,7 @@ class UserRepository implements IUserRepository, IAuthRepository {
     {
         $user = $this->model::create($data);
         $token = JWTAuth::fromUser($user);
+        
         $tokenData = [
             "access_token" => $token,
             "token_type" => "Bearer",

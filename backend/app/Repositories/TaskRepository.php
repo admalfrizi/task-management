@@ -33,7 +33,11 @@ class TaskRepository implements ITaskRepository {
     /**
      * @inheritDoc
      */
-    public function deleteTask() {
+    public function deleteTask($id) : bool
+    {
+        $task = $this->model::findOrFail($id);
+
+        return $task->delete();
     }
 
     /**
