@@ -119,11 +119,11 @@ Tabel utama dalam sistem ini:
 
 Sign In Page | Sign Up Page
 --- | --- 
-![](https://raw.githubusercontent.com/admalfrizi/task-management/refs/heads/master/screenshot/Screenshot%20(85).png?token=GHSAT0AAAAAADN5LRTR6I55GS6HH2Q6WDVI2H54OBA) | ![](https://raw.githubusercontent.com/admalfrizi/task-management/refs/heads/master/screenshot/Screenshot%20(86).png?token=GHSAT0AAAAAADN5LRTRXSPQB53Y3S6BVSUG2H54PAQ)
+![](https://github.com/admalfrizi/task-management/blob/master/screenshot/Screenshot%20(85).png) | ![](https://github.com/admalfrizi/task-management/blob/master/screenshot/Screenshot%20(86).png)
 
 Main Page 
 |  ---  |
-![](https://raw.githubusercontent.com/admalfrizi/task-management/refs/heads/master/screenshot/Screenshot%20(87).png?token=GHSAT0AAAAAADN5LRTQDSMUOQ4LJCCY4DL62H54Q5A)
+![](https://github.com/admalfrizi/task-management/blob/master/screenshot/Screenshot%20(87).png)
 
 ## **7\. Author**
 
